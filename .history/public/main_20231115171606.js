@@ -1,5 +1,4 @@
-import '../styles/main.scss'; // You have to import your styles for them to work. Comment in this line
-
+// import '../styles/main.scss'; // You have to import your styles for them to work. Comment in this line
 const houses = [
   {
     house: 'gryffindor',
@@ -28,19 +27,15 @@ const voldysArmy = []; // starts as an empty array
 
 // ********** HTML Components  ********** //
 // the basic HMTL structure of app
-const renderToDOM = (divId, content) => {
-  const selectedDiv = document.querySelector(divId);
-  selectedDiv.innerHTML = content;
-};
 const htmlStructure = () => {
-  const domString = `
+    const domString = `
     <div id="header-container" class="header mb-3"></div>
     <div id="form-container" class="container mb-3 text-center"></div>
     <div id="filter-container" class="container mb-3"></div>
     <div id="student-container" class="container d-flex"></div>
     `;
 
-  renderToDOM('#app', domString);
+  renderToDOM('#app', domString)
 };
 
 const header = () => {
@@ -64,15 +59,15 @@ const startSortingBtn = () => {
 
 const studentAreas = () => {
   const domString = `<div id="students">No Students</div>
-  <div id="voldy">No Death Eaters</div>`;
+  <div id="voldy">No Death Eaters</div>`
 
   renderToDOM('#student-container', domString);
 };
 
 const studentsOnDom = (divId, array, house = 'Hogwarts') => {
   let domString = '';
-  if (!array.length) {
-    domString += `NO ${house.toUpperCase()} STUDENTS`;
+  if(!array.length){
+    domString += `NO ${house.toUpperCase()} STUDENTS`
   }
 
   array.forEach((student) => {
@@ -111,13 +106,6 @@ const filterBtnRow = () => {
 
 // ********** LOGIC  ********** //
 // sorts student to a house and then place them in the students array
-const createId = (array) => {
-  if (array.length) {
-    const idArray = array.map((el) => el.id);
-    return Math.max(...idArray) + 1;
-  }
-  return 0;
-};
 const sortStudent = (e) => {
   e.preventDefault();
   const sortingHat = houses[Math.floor(Math.random() * houses.length)];
@@ -139,6 +127,15 @@ const sortStudent = (e) => {
 };
 
 // Create a new ID for the students
+const createId = (array) => {
+  if (array.length) {
+    const idArray = array.map((el) => el.id);
+    return Math.max(...idArray) + 1;
+  }
+  return 0;
+};
+
+
 // add form to DOM on start-sorting click.
 // Add events for form after the form is on the DOM
 const form = () => {
@@ -159,6 +156,11 @@ const form = () => {
   // has to be put on the DOM after form is on DOM, not before
   // on form submit, sort student
   document.querySelector('#sorting').addEventListener('submit', sortStudent);
+};
+
+const renderToDOM = (divId, content) => {
+  const selectedDiv = document.querySelector(divId);
+  selectedDiv.innerHTML = content;
 };
 
 const events = () => {
@@ -190,12 +192,13 @@ const events = () => {
   document.querySelector('#filter-container').addEventListener('click', (e) => {
     if (e.target.id.includes('filter')) {
       const [, house] = e.target.id.split('--');
-      if (house === 'all') {
-        studentsOnDom('#students', students);
-      } else if (house) {
-        const filter = students.filter((student) => student.house === house);
-        studentsOnDom('#students', filter, house);
-      }
+
+        if (house === 'all') {
+          studentsOnDom('#students', students);
+        } else if (house) {
+          const filter = students.filter((student) => student.house === house);
+          studentsOnDom('#students', filter, house);
+        }
     }
   });
 };
