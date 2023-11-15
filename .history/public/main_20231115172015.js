@@ -1,5 +1,4 @@
-import '../styles/main.scss'; // You have to import your styles for them to work. Comment in this line
-
+// import '../styles/main.scss'; // You have to import your styles for them to work. Comment in this line
 const houses = [
   {
     house: 'gryffindor',
@@ -111,13 +110,6 @@ const filterBtnRow = () => {
 
 // ********** LOGIC  ********** //
 // sorts student to a house and then place them in the students array
-const createId = (array) => {
-  if (array.length) {
-    const idArray = array.map((el) => el.id);
-    return Math.max(...idArray) + 1;
-  }
-  return 0;
-};
 const sortStudent = (e) => {
   e.preventDefault();
   const sortingHat = houses[Math.floor(Math.random() * houses.length)];
@@ -139,6 +131,13 @@ const sortStudent = (e) => {
 };
 
 // Create a new ID for the students
+const createId = (array) => {
+  if (array.length) {
+    const idArray = array.map((el) => el.id);
+    return Math.max(...idArray) + 1;
+  }
+  return 0;
+};
 // add form to DOM on start-sorting click.
 // Add events for form after the form is on the DOM
 const form = () => {
