@@ -4,10 +4,16 @@ import renderToDOM from '../utils/sample_data/renderToDom';
 import htmlStructure from '../components/htmlStructure';
 import header from '../components/header';
 import startSortingBtn from '../components/startSortingbtn';
-import studentAreas from '../components/StudentAreas';
 
 const students = [];
 const voldysArmy = [];
+
+const studentAreas = () => {
+  const domString = `<div id="students">No Students</div>
+  <div id="voldy">No Death Eaters</div>`;
+
+  renderToDOM('#student-container', domString);
+};
 
 const studentsOnDom = (divId, array, house = 'Hogwarts') => {
   let domString = '';
