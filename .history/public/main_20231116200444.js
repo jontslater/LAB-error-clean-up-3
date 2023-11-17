@@ -1,13 +1,39 @@
-import '../styles/main.scss';
+import '../styles/main.scss'; // You have to import your styles for them to work. Comment in this line
+
 import houses from '../utils/sample_data/house';
 import renderToDOM from '../utils/sample_data/renderToDom';
-import htmlStructure from '../components/htmlStructure';
-import header from '../components/header';
-import startSortingBtn from '../components/startSortingbtn';
-import studentAreas from '../components/StudentAreas';
 
 const students = [];
-const voldysArmy = [];
+const voldysArmy = []; // starts as an empty array
+
+// ********** HTML Components  ********** //
+// the basic HMTL structure of app
+
+const header = () => {
+  const domString = `<div class="container">
+    <h1>Welcome to Hoggy Hogwarts Sorting Hat!</h1>
+    <p>
+      Hmm, difficult. VERY difficult. <br />Plenty of courage, I see.
+      <br />Not a bad mind, either. There's talent, oh yes. <br />And a
+      thirst to prove yourself. <br />But where to put you?
+    </p>
+  </div>`;
+
+  renderToDOM('#header-container', domString);
+};
+
+const startSortingBtn = () => {
+  const domString = '<button type="button" class="btn btn-info" id="start-sorting">Start the Sorting Ceremony!</button>';
+
+  renderToDOM('#form-container', domString);
+};
+
+const studentAreas = () => {
+  const domString = `<div id="students">No Students</div>
+  <div id="voldy">No Death Eaters</div>`;
+
+  renderToDOM('#student-container', domString);
+};
 
 const studentsOnDom = (divId, array, house = 'Hogwarts') => {
   let domString = '';
